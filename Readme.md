@@ -1,0 +1,3 @@
+docker-compose up --build -d --remove-orphans --force-recreate
+
+
