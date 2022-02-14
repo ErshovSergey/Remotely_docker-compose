@@ -11,5 +11,7 @@ services:
       - ${HTTP_IP}:${HTTP_PORT}:5000
     volumes:
       - "${DATA_PATH}/remotely-data:/remotely-data"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
 
 
