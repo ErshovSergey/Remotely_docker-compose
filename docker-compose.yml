@@ -1,17 +1,14 @@
 services:
-
-version: "2"
-services:
   remotely:
     image: translucency/remotely:latest
-#    image: ershovsergey/remotely
     container_name: "${COMPOSE_PROJECT_NAME}_Remotely"
+    userns_mode: host
     hostname: "${COMPOSE_PROJECT_NAME}_mysql"
+    restart: on-failure:5
     ports:
       - ${HTTP_IP}:${HTTP_PORT}:5000
     volumes:
       - "${DATA_PATH}/remotely-data:/remotely-data"
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-
-
+      
