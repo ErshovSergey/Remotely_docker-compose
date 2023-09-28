@@ -1,14 +1,23 @@
 services:
+
+version: "2.1"
+
+services:
   remotely:
-    image: translucency/remotely:latest
+    restart: unless-stopped
+#    image: translucency/remotely:latest
+#    image: immybot/remotely:latest
+    image: immybot/remotely:67
+#    image: immybot/remotely:69 - не работает, агент не исполняемый файл
+#    image: immybot/remotely:68 - не работает, агент не исполняемый файл
+#    image: translucency/remotely:latest - на 27.09.2023 не сохраняет настройки
     container_name: "${COMPOSE_PROJECT_NAME}_Remotely"
     userns_mode: host
     hostname: "${COMPOSE_PROJECT_NAME}_mysql"
-    restart: on-failure:5
     ports:
       - ${HTTP_IP}:${HTTP_PORT}:5000
     volumes:
       - "${DATA_PATH}/remotely-data:/remotely-data"
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      
+
